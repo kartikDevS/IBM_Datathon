@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "incident_id": "synthetic-incident-001",
+  "device_id": "bed7",
+  "observed_at": 1791389002.0,
+  "category": "replay_suspected",
+  "severity": "medium",
+  "source": "M4",
+  "reasons": [
+    "duplicate_sequence"
+  ],
+  "evidence_refs": [
+    "mqtt_capture://archive/20261016/bed7_replay_packet.pcap"
+  ],
+  "recommended_action": "review"
+}

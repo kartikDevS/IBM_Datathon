@@ -1,0 +1,38 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environment configuration & secrets
+.env
+*.local.yaml
+*.log
+
+# Sensitive runtime keys/certificates
+*.key
+*.pem
+*.crt
+*.csr
+certs/
+mosquitto_dynsec.json
+
+# Model artifacts (keep models/ folder but ignore untracked huge files if needed)
+m5_network_witness/artifacts/*.pkl
+m5_network_witness/artifacts/*.joblib
+!m5_network_witness/artifacts/m5_model_baseline.joblib
+!m5_network_witness/artifacts/.gitkeep
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

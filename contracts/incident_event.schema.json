@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tessnova.hospital/schemas/incident_event.schema.json",
+  "title": "TessNova Generic Incident Event Contract (Proposed)",
+  "description": "Standardized event schema forwarded to the team decision engine for correlation and response dispatch.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "default": "1.0",
+      "description": "Contract version."
+    },
+    "incident_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique UUID or structured identifier for the incident."
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Bedside device affected."
+    },
+    "observed_at": {
+      "type": "number",
+      "description": "Unix timestamp when incident was formulated."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "replay_suspected",
+        "stale_telemetry",
+        "network_anomaly",
+        "flood_detected",
+        "sensor_stuck",
+        "acl_violation",
+        "unauthorized_topic"
+      ],
+      "description": "Standardized incident classification category."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Calculated or assigned incident severity level."
+    },
+    "source": {
+      "type": "string",
+      "description": "Originating detector or agent component (e.g. M4, M5, MosquittoACL)."
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Machine-readable anomaly indicators or trigger conditions."
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URI or file references to captured evidence (avoiding embedding raw packet/payload bloat)."
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": ["review", "monitor", "isolate", "quarantine_topic", "inspect_hardware"],
+      "description": "Advisory action recommendation for the central decision agent."
+    }
+  },
+  "required": [
+    "schema_version",
+    "incident_id",
+    "device_id",
+    "observed_at",
+    "category",
+    "severity",
+    "source",
+    "reasons",
+    "evidence_refs",
+    "recommended_action"
+  ],
+  "additionalProperties": false
+}

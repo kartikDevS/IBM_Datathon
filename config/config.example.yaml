@@ -1,0 +1,45 @@
+# Central Configuration Template for TessNova Cybersecurity Components
+
+system:
+  environment: local_development
+  log_level: INFO
+
+broker:
+  host: localhost
+  port: 1883
+  keepalive: 60
+  client_id_prefix: tessnova_sec
+  tls_enabled: false
+  username: null  # Read from env MQTT_USERNAME if needed
+  password: null  # Read from env MQTT_PASSWORD if needed
+
+topics:
+  telemetry_wildcard: "ward/+/ecg"
+  telemetry_template: "ward/{device_id}/ecg"
+  m4_events: "hospital/security/m4_replay"
+  m5_events: "hospital/security/m5_network_witness"
+  incidents: "hospital/security/incidents"
+
+telemetry:
+  expected_schema_version: "1.0"
+  allow_legacy_raw_float: false  # Do not silently accept unsequenced numbers as structured telemetry
+
+m4_replay:
+  stale_threshold_seconds: 5.0
+  future_tolerance_seconds: 2.0
+  max_sequence_history: 1000
+  allow_explicit_resets: true
+  reset_sequence_threshold: 0  # Sequence 0 can be treated as reset if explicitly signaled
+
+m5_network_witness:
+  model_path: "m5_network_witness/artifacts/m5_model_baseline.joblib"
+  metadata_path: "m5_network_witness/artifacts/m5_metadata.json"
+  feature_window_seconds: 10.0
+  minimum_packets_for_inference: 5
+  suspicion_threshold: 0.70
+
+containment:
+  dry_run_default: true
+  dynsec_cli_command: "mosquitto_ctrl"
+  timeout_seconds: 10.0
+  audit_log_path: "mqtt_security/containment_audit.log"

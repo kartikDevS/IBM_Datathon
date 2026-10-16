@@ -1,0 +1,51 @@
+# ==============================================================================
+# TessNova Mosquitto Broker Configuration Example (Dynamic Security & ACLs)
+# Target Architecture: Local Lab Testing & IBM LinuxONE (s390x / Linux)
+# ==============================================================================
+
+# Network Listener
+listener 1883 0.0.0.0
+protocol mqtt
+
+# Strict Access Controls
+allow_anonymous false
+
+# ------------------------------------------------------------------------------
+# Mosquitto Dynamic Security Plugin Configuration
+# ------------------------------------------------------------------------------
+# NOTE FOR IBM LinuxONE (s390x) vs. x86_64 / Debian:
+# - Ubuntu/Debian x86_64: /usr/lib/x86_64-linux-gnu/mosquitto_dynamic_security.so
+# - RHEL / Rocky / Fedora on IBM LinuxONE (s390x): /usr/lib64/mosquitto_dynamic_security.so
+# - Alpine / Custom builds: /usr/local/lib/mosquitto_dynamic_security.so
+plugin /usr/lib64/mosquitto_dynamic_security.so
+
+# Location of dynamic security policy DB (users, groups, roles, topic ACLs)
+# Ensure mosquitto user has read/write permissions to this directory
+plugin_opt_config_file /var/lib/mosquitto/dynamic-security.json
+
+# ------------------------------------------------------------------------------
+# Session & Message Persistence
+# ------------------------------------------------------------------------------
+persistence true
+persistence_location /var/lib/mosquitto/
+
+# Max persistent connection queue depth
+max_queued_messages 1000
+
+# Connection keep-alive and timeout boundaries
+max_keepalive 120
+
+# ------------------------------------------------------------------------------
+# Security & Audit Logging
+# ------------------------------------------------------------------------------
+log_dest stdout
+log_dest file /var/log/mosquitto/mosquitto.log
+log_type error
+log_type warning
+log_type notice
+log_type information
+
+# Log client connect/disconnect and subscription events for security audit
+connection_messages true
+log_timestamp true
+log_timestamp_format %Y-%m-%dT%H:%M:%S

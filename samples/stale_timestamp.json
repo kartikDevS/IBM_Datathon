@@ -1,0 +1,7 @@
+{
+  "device_id": "bed7",
+  "seq": 102,
+  "timestamp": 1600000000.0,
+  "ecg": 78.5,
+  "schema_version": "1.0"
+}

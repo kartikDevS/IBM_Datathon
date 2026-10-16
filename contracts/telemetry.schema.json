@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tessnova.hospital/schemas/telemetry.schema.json",
+  "title": "TessNova Telemetry Message Contract (Proposed)",
+  "description": "Standardized bedside monitor ECG telemetry published over MQTT. Proposed format for team agreement.",
+  "type": "object",
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "description": "Non-empty alphanumeric identifier for the bedside device."
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonically increasing sequence number for replay and gap detection."
+    },
+    "timestamp": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Unix epoch timestamp in seconds at message generation."
+    },
+    "ecg": {
+      "type": "number",
+      "description": "ECG reading in bpm or millivolts."
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "1.0",
+      "description": "Optional explicit contract schema version."
+    }
+  },
+  "required": [
+    "device_id",
+    "seq",
+    "timestamp",
+    "ecg"
+  ],
+  "additionalProperties": false
+}

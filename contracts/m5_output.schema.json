@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tessnova.hospital/schemas/m5_output.schema.json",
+  "title": "M5 Network Witness Output Event (Proposed)",
+  "description": "Structured suspicion event emitted by M5 network behavior classifier.",
+  "type": "object",
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Bedside device evaluated."
+    },
+    "detector": {
+      "type": "string",
+      "const": "M5",
+      "description": "Detector identifier."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "degraded", "unavailable"],
+      "description": "Status of the M5 detector/model artifact."
+    },
+    "network_suspicion_score": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Estimated probability of abnormal/malicious traffic pattern, null if unavailable."
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Version string of the loaded model pipeline."
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Explanation codes or prominent anomalous feature tags."
+    },
+    "observed_at": {
+      "type": "number",
+      "description": "Unix timestamp when inference was computed."
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "1.0"
+    }
+  },
+  "required": [
+    "device_id",
+    "detector",
+    "status",
+    "network_suspicion_score",
+    "model_version",
+    "reasons",
+    "observed_at"
+  ],
+  "additionalProperties": false
+}

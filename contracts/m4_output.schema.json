@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tessnova.hospital/schemas/m4_output.schema.json",
+  "title": "M4 Replay Detection Output Event (Proposed)",
+  "description": "Structured output emitted by M4 detector upon inspecting message metadata.",
+  "type": "object",
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the device evaluated."
+    },
+    "detector": {
+      "type": "string",
+      "const": "M4",
+      "description": "Fixed detector identifier."
+    },
+    "replay_suspected": {
+      "type": "boolean",
+      "description": "True if any replay or ordering anomalies are detected."
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Detailed machine-readable reason codes (e.g. duplicate_sequence, lower_sequence, stale_timestamp)."
+    },
+    "sequence_number": {
+      "type": ["integer", "null"],
+      "description": "Sequence number of evaluated message, or null if unparseable."
+    },
+    "event_timestamp": {
+      "type": ["number", "null"],
+      "description": "Claimed Unix timestamp from payload, or null if missing."
+    },
+    "observed_at": {
+      "type": "number",
+      "description": "Unix timestamp when M4 inspected the message."
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "1.0",
+      "description": "Schema version."
+    }
+  },
+  "required": [
+    "device_id",
+    "detector",
+    "replay_suspected",
+    "reasons",
+    "sequence_number",
+    "event_timestamp",
+    "observed_at"
+  ],
+  "additionalProperties": false
+}
