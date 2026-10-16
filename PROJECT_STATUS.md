@@ -53,9 +53,9 @@ An exhaustive baseline inspection of the development environment was conducted:
 ## 4. Work Breakdown & Stage Roadmap
 
 - [x] **Stage 1: Workspace Inspection & Scaffolding** (Environment validation, `.venv`, `.gitignore`, `.env.example`, `config.example.yaml`, `PROJECT_STATUS.md`).
-- [ ] **Stage 2: Event Contracts & JSON Schemas** (`telemetry.schema.json`, `m4_output.schema.json`, `m5_output.schema.json`, `incident_event.schema.json`, fixtures, `test_schemas.py`).
-- [ ] **Stage 3: M4 Replay Catcher** (`replay_detector.py`, `models.py`, `mqtt_replay_listener.py`, `test_replay_detector.py`).
-- [ ] **Stage 4: Attack & Fault Simulator Suite** (`normal_sender.py`, `attack_spike.py`, `attack_stuck.py`, `attack_bias.py`, `attack_drift.py`, `attack_replay.py`, `attack_spoof.py`, `attack_flood.py`, `README.md`).
-- [ ] **Stage 5: M5 Network Witness** (`dataset_inspection.py`, `feature_extractor.py`, `train_m5.py`, `evaluate_m5.py`, `m5_predict.py`, `model_card.md`, `README.md`).
-- [ ] **Stage 6: Mosquitto Dynamic Security & Containment** (`mosquitto.conf.example`, `setup_lab.md`, `containment.py`, `test_containment.py`, `recovery.md`, `test_containment.md`).
-- [ ] **Stage 7: Integration, Testing & Team Handoff** (`test_integration_local.py`, `architecture.md`, `threat_model.md`, `team_handoff.md`, `linuxone_integration.md`, `test_results.md`).
+- [x] **Stage 2: Event Contracts & JSON Schemas** (`telemetry.schema.json`, `m4_output.schema.json`, `m5_output.schema.json`, `incident_event.schema.json`, fixtures, `test_schemas.py`).
+- [x] **Stage 3: M4 Replay Catcher** (`replay_detector.py`, `models.py`, `mqtt_replay_listener.py`, `test_replay_detector.py`).
+- [x] **Stage 4: Attack & Fault Simulator Suite** (`normal_sender.py`, `attack_spike.py`, `attack_stuck.py`, `attack_bias.py`, `attack_drift.py`, `attack_replay.py`, `attack_spoof.py`, `attack_flood.py`, `README.md`).
+- [x] **Stage 5: M5 Network Witness** (`dataset_inspection.py`, `feature_extractor.py`, `train_m5.py`, `evaluate_m5.py`, `m5_predict.py`, `model_card.md`, `README.md`).
+- [x] **Stage 6: Mosquitto Dynamic Security & Containment** (`mosquitto.conf.example`, `setup_lab.md`, `containment.py`, `test_containment.py`, `recovery.md`, `test_containment.md`).
+- [x] **Stage 7: Integration, Testing & Team Handoff** (`test_integration_local.py`, `architecture.md`, `threat_model.md`, `team_handoff.md`, `linuxone_integration.md`, `test_results.md`).
